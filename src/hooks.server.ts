@@ -1,4 +1,4 @@
-// src/hooks.server.ts
+// src/hooks.server.ts supabase @ssr version
 import {
   PUBLIC_SUPABASE_URL,
   PUBLIC_SUPABASE_ANON_KEY,

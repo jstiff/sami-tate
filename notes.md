@@ -12,3 +12,5 @@
 - This link may be promising...[Github bug report](https://github.com/supabase/auth-helpers/issues/466)
 - See if this boilerplate uses 'streaming Promises'.
 - Might need to convert Supabase 'auth-helper' module to '@supabase/ssr' [Supabase with Sveltekit](https://supabase.com/docs/guides/auth/auth-helpers/sveltekit#set-up-the-supabase-client). 
+    - So far, I have converted `hooks.server.ts   /account/layout.server.ts   /account/layout.ts files`
+    - Had some git issues, so the master branch has also been changed. If I need to go back to `auth/helpers supabase version` I will need to copy and paste from the Saas boilerplate repo.   
