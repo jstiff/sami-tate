@@ -9,8 +9,9 @@ import {
   isBrowser,
 } from "@supabase/ssr"
 import type { Database } from "../../../DatabaseDefinitions.js"
+import { redirect } from "@sveltejs/kit"
 
-export const load: LayoutLoad = async ({ fetch, data, depends }) => {
+export const load: LayoutLoad = async ({ fetch, data, depends, url }) => {
   console.log("BEFORE createBrowserClient!")
 
   depends("supabase:auth")
@@ -37,6 +38,21 @@ export const load: LayoutLoad = async ({ fetch, data, depends }) => {
    * safe, and on the server, it reads `session` from the `LayoutData`, which
    * safely checked the session using `safeGetSession`.
    */
+
+  const profile: Database["public"]["Tables"]["profiles"]["Row"] | null =
+    data.profile
+
+  const createProfilePath = "/account/create_profile"
+  const signOutPath = "/account/sign_out"
+  if (
+    profile &&
+    !_hasFullProfile(profile) &&
+    url.pathname !== createProfilePath &&
+    url.pathname !== signOutPath
+  ) {
+    redirect(303, createProfilePath)
+  }
+
   const {
     data: { session },
   } = await supabase.auth.getSession()
